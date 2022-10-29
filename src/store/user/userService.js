@@ -6,7 +6,7 @@ export const userService = createApi({
   refetchOnMountOrArgChange: true,
   refetchOnFocus: 'always',
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:8080/api`,
+    baseUrl: `${import.meta.env.VITE_APP_BASEURL}`,
   }),
   endpoints: (builder) => ({
     getAllUser: builder.query({
