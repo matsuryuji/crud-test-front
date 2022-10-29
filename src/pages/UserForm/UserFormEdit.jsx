@@ -7,7 +7,6 @@ import { useGetUserQuery } from "@/store/user/userService";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useUpdateUserMutation } from "@/store/user/userService";
-import { Link } from 'react-router-dom';
 
 const UserFormEdit = () => {
   const id = useSelector(state => state.user.idUser)
@@ -40,6 +39,7 @@ const UserFormEdit = () => {
     enableReinitialize: true,
     onSubmit: (values) => {
       editUser({ body: values, id: id });
+      window.location.href = '/lista-de-usuario';
     },
   });
 
@@ -103,7 +103,7 @@ const UserFormEdit = () => {
         helperText={formik.touched.age && formik.errors.age}
     />
 
-    <Button component={Link} to={`/lista-de-usuario`} sx={{marginTop: '20px'}} variant="contained" fullWidth type="submit">Confirmar</Button>
+    <Button sx={{marginTop: '20px'}} variant="contained" fullWidth type="submit">Confirmar</Button>
     </form>
     </div>
     </>:<></>}
