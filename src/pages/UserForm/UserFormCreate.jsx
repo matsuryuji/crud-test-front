@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { USER_SCHEMA } from "../../schema/schema";
 import InputMask from "react-input-mask";
 import { useCreateUserMutation } from "@/store/user/userService";
+import { Link } from 'react-router-dom';
 
 const UserFormCreate = () => {
   const [createUser] = useCreateUserMutation();
@@ -18,9 +19,7 @@ const UserFormCreate = () => {
     },
     validationSchema: USER_SCHEMA,
     onSubmit: (values) => {
-      console.log(values);
       createUser(values);
-      window.location.href = '/lista-de-usuario';
     },
   });
 
@@ -82,7 +81,7 @@ const UserFormCreate = () => {
           helperText={formik.touched.age && formik.errors.age}
       />
 
-      <Button sx={{marginTop: '20px'}} variant="contained" fullWidth type="submit">Confirmar</Button>
+      <Button component={Link} to={`/lista-de-usuario`} sx={{marginTop: '20px'}} variant="contained" fullWidth type="submit">Confirmar</Button>
       </form>
       </div>
       </>
