@@ -1,0 +1,75 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+export const userService = createApi({
+  reducerPath: 'users',
+  tagTypes: ['data'],
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: 'always',
+  baseQuery: fetchBaseQuery({
+    baseUrl: `http://localhost:8080/api`,
+  }),
+  endpoints: (builder) => ({
+    getAllUser: builder.query({
+      query: () => ({
+        headers: {
+          'Content-type': 'application/json',
+        },
+        url: `/getAll`,
+        method: 'GET',
+      }),
+      providesTags: ['data'],
+    }),
+    getUser: builder.query({
+      query: (id) => ({
+        headers: {
+          'Content-type': 'application/json',
+        },
+        url: `/getUser/${id}`,
+        method: 'GET',
+      }),
+      providesTags: ['data'],
+    }),
+    createUser: builder.mutation({
+      query: (body) => ({
+        headers: {
+          'Content-type': 'application/json',
+        },
+        url: '/create',
+        method: 'POST',
+        body: body,
+      }),
+      invalidatesTags: ['data'],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        headers: {
+          'Content-type': 'application/json',
+        },
+        url: `/delete/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['data'],
+    }),
+    updateUser: builder.mutation({
+      query: (value) => {
+        const { body, id } = value;
+        return {
+          headers: {
+            'Content-type': 'application/json',
+          },
+          url: `/update/${id}`,
+          method: 'PATCH',
+          body: body,
+        };
+      },
+      invalidatesTags: ['data'],
+    }),
+  }),
+});
+export const {
+  useGetAllUserQuery,
+  useGetUserQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+} = userService;
