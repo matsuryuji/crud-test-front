@@ -14,7 +14,7 @@ export const userService = createApi({
         headers: {
           'Content-type': 'application/json',
         },
-        url: `/getAll`,
+        url: `/clientes`,
         method: 'GET',
       }),
       providesTags: ['data'],
@@ -24,7 +24,7 @@ export const userService = createApi({
         headers: {
           'Content-type': 'application/json',
         },
-        url: `/getUser/${id}`,
+        url: `/cliente/${id}`,
         method: 'GET',
       }),
       providesTags: ['data'],
@@ -34,7 +34,7 @@ export const userService = createApi({
         headers: {
           'Content-type': 'application/json',
         },
-        url: '/create',
+        url: '/cliente',
         method: 'POST',
         body: body,
       }),
@@ -45,7 +45,7 @@ export const userService = createApi({
         headers: {
           'Content-type': 'application/json',
         },
-        url: `/delete/${id}`,
+        url: `/cliente/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['data'],
@@ -57,8 +57,8 @@ export const userService = createApi({
           headers: {
             'Content-type': 'application/json',
           },
-          url: `/update/${id}`,
-          method: 'PATCH',
+          url: `/cliente/${id}`,
+          method: 'PUT',
           body: body,
         };
       },

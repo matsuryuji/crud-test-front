@@ -1,5 +1,4 @@
 export { default as Button } from './Button';
-export { default as Stack } from './Stack';
 export { default as Typography } from './Typography';
 export { default as Skeleton } from './Skeleton';
 export { default as Modal } from './Modal';
